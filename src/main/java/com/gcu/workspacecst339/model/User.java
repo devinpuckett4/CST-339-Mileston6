@@ -4,38 +4,41 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-
-@Table("users")
+@Table("USERS") // UPPERCASE to match H2's unquoted DDL
 public class User {
 
-    /** Primary key */
     @Id
+    @Column("ID")
     private Long id;
 
-    /** Username for login. */
+    @Column("USERNAME")
     private String username;
 
-    /** User password  */
+    @Column("PASSWORD")
     private String password;
 
-    /** Maps to column "first_name". */
-    @Column("first_name")
+    @Column("FIRST_NAME")
     private String firstName;
 
-    /** Maps to column "last_name". */
-    @Column("last_name")
+    @Column("LAST_NAME")
     private String lastName;
 
-    /** Contact email. */
+    @Column("EMAIL")
     private String email;
 
-    /** No-arg constructor  */
+    @Column("ROLE")
+    private String role;
+
     public User() {}
 
-    /** Convenience constructor for manual object creation */
     public User(Long id, String username, String password, String firstName, String lastName, String email) {
-        this.id = id; this.username = username; this.password = password;
-        this.firstName = firstName; this.lastName = lastName; this.email = email;
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.role = "ROLE_USER"; // default if not set elsewhere
     }
 
     public Long getId() { return id; }
@@ -55,4 +58,7 @@ public class User {
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 }

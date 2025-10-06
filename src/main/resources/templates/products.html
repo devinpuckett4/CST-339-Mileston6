@@ -1,31 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Products</title></head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Products</title>
+  <th:block th:replace="~{fragments/head :: head}"></th:block>
+</head>
 <body>
-<h1>Products</h1>
+  <th:block th:replace="~{fragments/navbar :: navbar}"></th:block>
 
-<table border="1" cellpadding="8">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Qty</th>
-    <th>Actions</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="p : ${products}">
-    <td th:text="${p.name}">Name</td>
-    <td th:text="${#numbers.formatDecimal(p.price, 1, 'COMMA', 2, 'POINT')}">0.00</td>
-    <td th:text="${p.quantity}">0</td>
-    <td>
-      <a th:href="@{|/products/${p.id}/edit|}">Edit</a>
-      <form th:action="@{|/products/${p.id}/delete|}" method="post" style="display:inline">
-        <button type="submit">Delete</button>
-      </form>
-    </td>
-  </tr>
-  </tbody>
-</table>
+  <main class="container py-4">
+    <h1 class="mb-3">Products</h1>
+
+    <div class="card p-3">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th class="text-end">Price</th>
+          <th class="text-end">Qty</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${products}">
+          <td th:text="${p.id}">1</td>
+          <td th:text="${p.name}">Controller</td>
+          <td th:text="${p.description}">Game controller</td>
+          <td class="text-end" th:text="${#numbers.formatDecimal(p.price, 1, 2)}">29.99</td>
+          <td class="text-end" th:text="${p.quantity}">12</td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(products)}">
+          <td colspan="5" class="text-center">No products found.</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
 </body>
 </html>
