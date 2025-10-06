@@ -37,7 +37,7 @@ This is the H2 console showing the USERS table. The first view shows the seeded 
 ---
 
 ## - Showing H2 Console
-![Build success](userpng)
+![Build success](user.png)
 
 This is the H2 console showing the USERS table. The first view shows the seeded admin account with a BCrypt hashed password and role set to ROLE_ADMIN. After I registered through the app, the second view shows my new user added with ROLE_USER and its own BCrypt hash. This proves the app is using the database for auth and registration is saving users correctly.
 
